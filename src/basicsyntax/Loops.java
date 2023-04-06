@@ -78,17 +78,18 @@ public class Loops {
         Scanner scanner = new Scanner(System.in);
         try {
             int a = scanner.nextInt();
-            if (a == 0) {
+            int b = (a < 0) ? a * -1 : a * 1;
+            if (b == 0) {
                 System.out.println(" 0 can be divided by any integer, the result will be 0");
             }
-            if (a == 1) {
-                System.out.println(" The only one integer divider for 1 is 1");
+            if (b == 1 || a == -1) {
+                System.out.printf(" The only one integer divider for %d is 1", a);
             }
             int counter = 2;
-            while (counter < a - 1) {
-                if (a % counter == 0) {
-                    if (a / counter > result) {
-                        result = a / counter;
+            while (counter < b - 1) {
+                if (b % counter == 0) {
+                    if (b / counter > result) {
+                        result = b / counter;
                     }
                 }
                 counter++;
