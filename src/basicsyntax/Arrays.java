@@ -4,34 +4,21 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
 public class Arrays {
-    public static int[] arrayFirstInt = {1, 45, 6, 15, 0};
-    public static int[] arraySecondInt = {-1, 4, 66, 105, 0, 13};
-    public static double[] arrayFirstDbl = {-15.5, 5, 103.55, 17, 0.1, 0};
-    public static double[] arraySecondDbl = {0.5, 15, 10, 1, 23, -9};
-    public static int[] testArray = {100};
-    public static double[] emptyArray = new double[0];
 
+    public static int[] emptyIntArray; // to check null pointer exception, array with default value null.
 
     public static void main(String[] args) {
+        // test data
+        int[] arrayFirstInt = {1, 10};
+        int[] arraySecondInt = {-1, 4, 66, 105, 0, 13};
+        double[] arrayFirstDbl = {-15.5, 5, 103.55, 17, 0.1, 0};
+        double[] arraySecondDbl = {0.5, 15, 10, 1, 23, -9};
+        int[] testArray = {100};
+        double[] emptyArray = new double[0];
 
-        System.out.println(avgValueArray(emptyArray));
-        System.out.println("Task 1 test");
-        System.out.println(" AVG of int [] array : " + avgValueArray(arrayFirstInt));
-        System.out.println(" \n AVG of double [] array : " + avgValueArray(arrayFirstDbl));
-
-        System.out.println("Task 2 test all 3 methods");
+        avgValueArray(arrayFirstDbl);
+        avgValueArray(arrayFirstInt);
         printArray(joinArray(arrayFirstInt, arraySecondInt));
-        System.out.println("\n");
-        printArray(joinArrayNew(arrayFirstDbl, arrayFirstDbl));
-        System.out.println("\n");
-        printArray(joinArrayNew(arrayFirstInt, arraySecondInt));
-
-        System.out.println("\nTask 3 test ");
-        printMaxValue(joinArrayNew(arrayFirstInt, arraySecondInt));
-        printMaxValue(joinArrayNew(arrayFirstDbl, arraySecondDbl));
-
-        System.out.println("\nTask 4 test ");
-        sortArrayASCAndPrint(joinArray(arrayFirstInt, arraySecondInt));
 
     }
 
@@ -41,29 +28,31 @@ public class Arrays {
      * this value to the console. Program must calculate average value
      * for array with any number of elements.
      */
-    public static double avgValueArray(double[] array) {
+    public static void avgValueArray(double[] array) {
         try {
             double sum = 0;
             for (double d : array) {
                 sum += d;
             }
-            return sum / array.length;
+            System.out.println("AVG of array = " + sum / array.length);
         } catch (Exception e) {
             throw new RuntimeException();
         }
 
     }
 
-    public static int avgValueArray(int[] array) {
-        if (array.length == 0) { // checks math exception
-            Exception e = new Exception("The array length 0 ");
-            return 0;
+    //checks math exception without try/catch
+    public static void avgValueArray(int[] array) {
+        if (array == null) {
+            System.out.println("Array is empty");
+        } else if (array.length == 0 || array == null) {
+            System.out.println("The array length 0 ");
         } else {
             int sum = 0;
             for (int i : array) {
                 sum += i;
             }
-            return sum / array.length;
+            System.out.println("AVG of array = " + sum / array.length);
         }
     }
 
@@ -112,7 +101,7 @@ public class Arrays {
         System.out.println();
     }
 
-    //for loop can be replaced with enhanced 'for'
+    //for loop replaced by enhanced 'for'
     public static void printMaxValue(double[] a) {
         double max = 0;
         for (double i : a) {
