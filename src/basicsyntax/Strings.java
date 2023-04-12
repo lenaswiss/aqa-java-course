@@ -165,10 +165,7 @@ public class Strings {
                     for (String s : wordsArray) {
                         System.out.print(s + " ");
                     }
-
             }
-
         }
-
     }
 }
