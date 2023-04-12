@@ -6,13 +6,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Strings {
+
     public static void main(String[] args) throws IOException {
         stringFormatPrintAscColumn();                   //task 1 test
         stringFormatPrintEvenWordUppercase();           //task 2 test
         countNumberOfSymbolInString();                  //task 3 test
         separateStringAndPrint();                       //task 4 test
-        sortStringBubble("11baABc3frRF");            //task 5 test result in console
-        System.out.println(sortStringBubble());         //task 5 test result as new String, trim all spaces
 
     }
 
@@ -171,46 +170,5 @@ public class Strings {
 
         }
 
-    }
-
-    /**
-     * Task 5*:
-     * bubble sorting realization.
-     */
-//using array of chars?
-    public static void sortStringBubble(String s) {
-        char[] charArray = s.toCharArray();
-        char temp;
-        for (int i = 0; i < charArray.length; i++) {
-            for (int j = i + 1; j < charArray.length; j++) {
-                if (Character.toString(charArray[j]).compareTo(Character.toString(charArray[i])) < 0) {
-                    temp = charArray[i];
-                    charArray[i] = charArray[j];
-                    charArray[j] = temp;
-                }
-            }
-        }
-        for (char c : charArray) {
-            System.out.print(c);
-        }
-    }
-
-
-    public static String sortStringBubble() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String str = reader.readLine();
-        char[] charArray = str.toCharArray();
-        char temp;
-        for (int i = 0; i < charArray.length; i++) {
-            for (int j = i + 1; j < charArray.length; j++) {
-                if (Character.toString(charArray[j]).compareTo(Character.toString(charArray[i])) < 0) {
-                    temp = charArray[i];
-                    charArray[i] = charArray[j];
-                    charArray[j] = temp;
-                }
-            }
-        }
-
-        return String.valueOf(charArray).trim();
     }
 }
