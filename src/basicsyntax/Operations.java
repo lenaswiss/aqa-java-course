@@ -14,7 +14,7 @@ public class Operations {
      * For this task use Math library, for square root operation(Math.sqrt(argument)
      */
     public void triangleArea(double a, double b, double c) {
-        var area = (a + b + c) / 2.0;
+        var area = (a + b + c) / 2;
         double result = Math.sqrt(area * (area - a) * (area - b) * (area - c));
         System.out.println("***************Task 1***************");
         System.out.println("an area of a triangle ");
