@@ -1,5 +1,8 @@
 package basicsyntax;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
@@ -7,7 +10,7 @@ public class Arrays {
 
     public static int[] emptyIntArray; // to check null pointer exception, array with default value null.
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // test data
         int[] arrayFirstInt = {1, 10};
         int[] arraySecondInt = {-1, 4, 66, 105, 0, 13};
@@ -19,6 +22,10 @@ public class Arrays {
         avgValueArray(arrayFirstDbl);
         avgValueArray(arrayFirstInt);
         printArray(joinArray(arrayFirstInt, arraySecondInt));
+
+        sortStringBubble("11baABc3frRF");    //task 5 test result in console
+        System.out.println(sortStringBubble()); // read string from console, trim spaces
+
 
     }
 
@@ -38,7 +45,6 @@ public class Arrays {
         } catch (Exception e) {
             throw new RuntimeException();
         }
-
     }
 
     //checks math exception without try/catch
@@ -73,7 +79,6 @@ public class Arrays {
         }
         return array;
     }
-
 
     public static int[] joinArrayNew(int[] a, int[] b) {
         return IntStream.concat(IntStream.of(a), IntStream.of(b))
@@ -118,8 +123,6 @@ public class Arrays {
      * create a program, that will sort by asc given array with
      * numbers and print result array to the console.
      */
-
-
     public static int[] bubbleSortArrayASC(int[] a) {
         for (int i = 0; i < a.length; i++) {
             for (int j = i + 1; j < a.length; j++) {
@@ -146,8 +149,46 @@ public class Arrays {
         printArray(a);
     }
 
+    /**
+     * Task 5*:
+     * bubble sorting realization.
+     */
+    //using array of chars?
+    public static void sortStringBubble(String s) {
+        char[] charArray = s.toCharArray();
+        char temp;
+        for (int i = 0; i < charArray.length; i++) {
+            for (int j = i + 1; j < charArray.length; j++) {
+                if (Character.toString(charArray[j]).compareTo(Character.toString(charArray[i])) < 0) {
+                    temp = charArray[i];
+                    charArray[i] = charArray[j];
+                    charArray[j] = temp;
+                }
+            }
+        }
+        for (char c : charArray) {
+            System.out.print(c);
+        }
+    }
 
-    //additional
+    public static String sortStringBubble() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String str = reader.readLine();
+        char[] charArray = str.toCharArray();
+        char temp;
+        for (int i = 0; i < charArray.length; i++) {
+            for (int j = i + 1; j < charArray.length; j++) {
+                if (Character.toString(charArray[j]).compareTo(Character.toString(charArray[i])) < 0) {
+                    temp = charArray[i];
+                    charArray[i] = charArray[j];
+                    charArray[j] = temp;
+                }
+            }
+        }
+        return String.valueOf(charArray).trim();
+    }
+
+    //additional methods to print arrays
     public static void printArray(int[] a) {
         for (int i = 0; i < a.length; i++) {
             if (i > 0) {
