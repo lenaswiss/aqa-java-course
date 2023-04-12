@@ -4,7 +4,8 @@ public class Operations {
     public static void main(String[] args) {
 
         Operations stepSecond = new Operations();
-        stepSecond.triangleArea(3, 4, 3); // to use method without object creation static modifier should be added
+        stepSecond.triangleArea(3, 4, 3);
+        incrementsDecrements();// to use method without object creation static modifier should be added
     }
 
     /**
@@ -13,7 +14,7 @@ public class Operations {
      * For this task use Math library, for square root operation(Math.sqrt(argument)
      */
     public void triangleArea(double a, double b, double c) {
-        double area = (a + b + c) / 2.0d;
+        var area = (a + b + c) / 2.0;
         double result = Math.sqrt(area * (area - a) * (area - b) * (area - c));
         System.out.println("***************Task 1***************");
         System.out.println("an area of a triangle ");
@@ -29,12 +30,12 @@ public class Operations {
      * line by line with printing result of operation and variable value after.
      */
     // unary operators ++/-- increments/decrements a value by 1
-    {
+    public static void incrementsDecrements (){
         double a = 10;
-        double b = (--a) / 2 + (b = ++a);
+        double b = ++a*2 + --a/10 + a++-1-a--;
         System.out.println("***************Task 2***************");
         System.out.println("pre and post increment/decrement test");
-        System.out.println("the result of (--a) / 2 + (b=++a) or (--10)/2 + (++9) = " + b);
+        System.out.println("the result of ++a*2 + --a/10 + a++-1-a-- = " + b);
         System.out.println("************************************");
         System.out.println();
     }
