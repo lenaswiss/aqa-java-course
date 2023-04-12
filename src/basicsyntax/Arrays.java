@@ -80,11 +80,7 @@ public class Arrays {
         return array;
     }
 
-    public static int[] joinArrayNew(int[] a, int[] b) {
-        return IntStream.concat(IntStream.of(a), IntStream.of(b))
-                .toArray();
-    }
-
+    //different way to solve the task 2
     public static double[] joinArrayNew(double[] a, double[] b) {
         return DoubleStream.concat(DoubleStream.of(a), DoubleStream.of(b))
                 .toArray();
@@ -123,19 +119,6 @@ public class Arrays {
      * create a program, that will sort by asc given array with
      * numbers and print result array to the console.
      */
-    public static int[] bubbleSortArrayASC(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            for (int j = i + 1; j < a.length; j++) {
-                if (a[i] > a[j]) {
-                    int temp = a[i];
-                    a[i] = a[j];
-                    a[j] = temp;
-                }
-            }
-        }
-        return a;
-    }
-
     public static void sortArrayASCAndPrint(int[] a) {
         for (int i = 0; i < a.length; i++) {
             for (int j = i + 1; j < a.length; j++) {
@@ -166,13 +149,16 @@ public class Arrays {
                 }
             }
         }
+        System.out.println("\n Task 5 \nResult of string sorting");
         for (char c : charArray) {
             System.out.print(c);
         }
     }
 
+    //sort any string enter from console
     public static String sortStringBubble() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("\nEnter string to sort it out");
         String str = reader.readLine();
         char[] charArray = str.toCharArray();
         char temp;
