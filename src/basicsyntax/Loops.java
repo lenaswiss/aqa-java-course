@@ -3,12 +3,12 @@ package basicsyntax;
 import java.util.Scanner;
 
 public class Loops {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
 //        printNumbers();
 //        calculateFactorial();
         maxIntegerDivisorOfNumber();
-        //   ageValidation();
+//        ageValidation();
     }
 
     /**
@@ -26,19 +26,20 @@ public class Loops {
         int a = scanner.nextInt();
         if (a < 0) {
             System.out.println(" error: number is negative");
-        } else if (a % 3 == 0 && a != 0) {
-            System.out.println("The number multiple to 3");
-        } else if (a >= 0 && a % 2 == 0) {
-            System.out.println(" The number is even ");
-            for (int i = 0; i < a + 1; i++) {
-                System.out.print(i + ", ");
-            }
         } else {
-            int counter = 0;
+            int counter = a;
             do {
-                System.out.print(counter + ", ");
-                counter++;
-                a--;
+                for (int i = 0; i < counter + 1; ) {
+                    if (i % 3 == 0 && i != 0) {
+                        System.out.println("The " + i + "  number multiple to 3");
+                    } else if (i >= 0 && i % 2 == 0) {
+                        System.out.println("The " + i + " number is even ");
+                    } else {
+                        System.out.println(i);
+                    }
+                    i++;
+                    a--;
+                }
             } while (a > 0);
         }
         System.out.println();
@@ -74,27 +75,24 @@ public class Loops {
     public static void maxIntegerDivisorOfNumber() {
         System.out.println("Task 3");
         System.out.println(" Enter number ");
-        int result = 1;
+        int maxDivider = 1;
         Scanner scanner = new Scanner(System.in);
         try {
-            int a = scanner.nextInt();
-            int b = (a < 0) ? a * -1 : a * 1;
-            if (b == 0) {
+            int enteredInt = scanner.nextInt();
+            if (enteredInt == 0) {
                 System.out.println(" 0 can be divided by any integer, the result will be 0");
             }
-            if (b == 1 || a == -1) {
-                System.out.printf(" The only one integer divider for %d is 1", a);
+            if (enteredInt == 1 || enteredInt == -1) {
+                System.out.printf(" The only one integer divider for %d is 1", enteredInt);
             }
-            int counter = 2;
-            while (counter < b - 1) {
-                if (b % counter == 0) {
-                    if (b / counter > result) {
-                        result = b / counter;
-                    }
+            if (enteredInt < 0) enteredInt = enteredInt * -1;
+            for (int i = 1; i < enteredInt - 1; ) {
+                if (enteredInt % i == 0) {
+                    maxDivider = i;
                 }
-                counter++;
+                i++;
             }
-            System.out.printf("Max divisor for %d is %d ", a, result);
+            System.out.printf("Max divider is %d ", maxDivider);
         } catch (Exception e) {
             System.out.println(" Error: invalid data type");
         }
@@ -123,8 +121,7 @@ public class Loops {
                 } else {
                     System.out.println("Thank you, your information was successfully saved.");
                 }
-            } while (age <= 0 || age > 140);
-
+            } while (true);
         } catch (Exception e) {
             System.out.println("Invalid data type");
         }
