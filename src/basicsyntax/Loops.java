@@ -3,12 +3,12 @@ package basicsyntax;
 import java.util.Scanner;
 
 public class Loops {
-    public static void main(String[] args) {
 
-//        printNumbers();
-//        calculateFactorial();
+    public static void main(String[] args) {
+        printNumbers();
+        calculateFactorial();
         maxIntegerDivisorOfNumber();
-        //   ageValidation();
+        ageValidation();
     }
 
     /**
@@ -26,19 +26,20 @@ public class Loops {
         int a = scanner.nextInt();
         if (a < 0) {
             System.out.println(" error: number is negative");
-        } else if (a % 3 == 0 && a != 0) {
-            System.out.println("The number multiple to 3");
-        } else if (a >= 0 && a % 2 == 0) {
-            System.out.println(" The number is even ");
-            for (int i = 0; i < a + 1; i++) {
-                System.out.print(i + ", ");
-            }
         } else {
-            int counter = 0;
+            int counter = a;
             do {
-                System.out.print(counter + ", ");
-                counter++;
-                a--;
+                for (int i = 0; i < counter + 1; ) {
+                    if (i % 3 == 0 && i != 0) {
+                        System.out.println("The " + i + "  number multiple to 3");
+                    } else if (i >= 0 && i % 2 == 0) {
+                        System.out.println("The " + i + " number is even ");
+                    } else {
+                        System.out.println(i);
+                    }
+                    i++;
+                    a--;
+                }
             } while (a > 0);
         }
         System.out.println();
@@ -78,7 +79,7 @@ public class Loops {
         Scanner scanner = new Scanner(System.in);
         try {
             int a = scanner.nextInt();
-            int b = (a < 0) ? a * -1 : a * 1;
+            int b = (a < 0) ? a * -1 : a;
             if (b == 0) {
                 System.out.println(" 0 can be divided by any integer, the result will be 0");
             }
@@ -123,8 +124,7 @@ public class Loops {
                 } else {
                     System.out.println("Thank you, your information was successfully saved.");
                 }
-            } while (age <= 0 || age > 140);
-
+            } while (true);
         } catch (Exception e) {
             System.out.println("Invalid data type");
         }
