@@ -51,7 +51,7 @@ public class Arrays {
     public static void avgValueArray(int[] array) {
         if (array == null) {
             System.out.println("Array is empty");
-        } else if (array.length == 0 || array == null) {
+        } else if (array.length == 0) {
             System.out.println("The array length 0 ");
         } else {
             int sum = 0;
@@ -70,9 +70,8 @@ public class Arrays {
      */
     public static int[] joinArray(int[] a, int[] b) {
         int[] array = new int[a.length + b.length];
-        for (int i = 0; i < a.length; ) {
+        for (int i = 0; i < a.length; i++) {
             array[i] = a[i];
-            i++;
         }
         for (int i = a.length, j = 0; i < array.length; i++, j++) {
             array[i] = b[j];
