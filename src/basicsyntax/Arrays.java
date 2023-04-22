@@ -49,11 +49,9 @@ public class Arrays {
 
     //checks math exception without try/catch
     public static void avgValueArray(int[] array) {
-        if (array == null) {
+        if (array == null || array.length == 0) {
             System.out.println("Array is empty");
-        } else if (array.length == 0) {
-            System.out.println("The array length 0 ");
-        } else {
+        }  else {
             int sum = 0;
             for (int i : array) {
                 sum += i;
