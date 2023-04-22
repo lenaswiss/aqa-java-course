@@ -53,19 +53,13 @@ public class Strings {
                 ArrayList<String> list = new ArrayList<>();
                 if (!str.contains(" ")) {
                     System.out.println(str);
-                    return;
                 }
-                while (str.contains(" ")) {
-                    int index = str.indexOf(" ");
-                    String temp = str.substring(0, index);
-                    list.add(temp);
-                    str = str.substring(index + 1);
-                }
-                for (int i = 0; i < list.size(); i++) {
+                String[] words = str.split(" ");
+                for (int i = 0; i < words.length; i++) {
                     if (i % 2 == 0) {
-                        System.out.print(list.get(i).toUpperCase() + " ");
+                        System.out.print(words[i].toUpperCase() + " ");
                     } else {
-                        System.out.print(list.get(i) + " ");
+                        System.out.print(words[i] + " ");
                     }
                 }
             }
@@ -90,6 +84,7 @@ public class Strings {
         System.out.println("****** Enter a single symbol, please. ******");
         String symbol = reader.readLine();
         if (symbol.isEmpty()) {
+            System.out.println("Wrong symbol was entered, a letter was expected");
             return;
         }
         if (!str.contains(symbol)) {
