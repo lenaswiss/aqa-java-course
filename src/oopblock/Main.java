@@ -5,8 +5,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        User user = new User("Lena", "Test", "email@g.com", RoleTypes.ADMIN);
+        User user = new User("Lena", "Test", "email@g.com", RoleTypes.MAIN_CUSTOMER);
         user.add();
+
         String name;
         String email;
         String roleId;
@@ -23,14 +24,17 @@ public class Main {
                     do {
                         System.out.println("enter email");
                         email = scanner.nextLine();
+                        if (!email.contains("@")){
+                            System.out.println("Email format is invalid");//TODO add an error message
+                        }
                     } while (!email.contains("@"));
 
-                    List<String> roleIds = Arrays.asList("1","2","3","4");
+                    List<String> roleIds = Arrays.asList("admin","main customer","customer","viewer");
                     do {
-                        System.out.println("enter role id: 1 = Admin; 2 = main customer; 3 = customer; 4 = viewer. ");
+                        System.out.println("enter role user role: admin; main customer; customer; viewer. ");
                         roleId = scanner.nextLine();
                     } while (!roleIds.contains(roleId));
-                    User userNew = new User(name, email, new Role(Integer.valueOf(roleId)));
+                    User userNew = new User(name, email, Role.generateRole(roleId.toString()));
                     userNew.add();
                     System.out.println("Please select action add | find | remove | exit");
 

@@ -53,7 +53,8 @@ public class Manager extends User {
 
     @Override
     public void printUserInfo(){
-        System.out.println(super.toString() + toString());
+        super.printUserInfo();
+        System.out.println(toString());
     }
 
     @Override

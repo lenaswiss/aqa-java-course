@@ -77,7 +77,7 @@ public class User implements Actions {
         this.lastName = lastName;
         this.fullName = firstName + " " + lastName;
         this.email = email;
-        this.role = type.createRole(type);
+        this.role = Role.generateRole(type);
     }
 
     public int getId() {
@@ -143,33 +143,47 @@ public class User implements Actions {
      * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber.startsWith("+"))
+        if (phoneNumber.startsWith("+")) {
             this.phoneNumber = phoneNumber;
-        System.out.println("Incorrect phone format, should starts from '+' symbol.");
+        } else {
+            System.out.println("Incorrect phone format, should starts from '+' symbol.");
+        }
     }
 
     public void setCardList(Card card) {
-
         this.cardList.add(card);
     }
 
     public void printUserInfo() {
-        System.out.println(toString());
+        System.out.println("User{" +
+                ", fullName='" + fullName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", role=" + role.toString() +
+                ", email='" + email + '\'' +
+                ", deliveryAddress=" + deliveryAddress +
+                ", billingAddress=" + billingAddress +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", cardList=" + cardList +
+                '}');
     }
 
     @Override
     public String toString() {
         return "User{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role=" + role +
+                ", role=" + role.toString() +
                 ", email='" + email + '\'' +
                 ", deliveryAddress=" + deliveryAddress +
                 ", billingAddress=" + billingAddress +
+                ", manager='" + manager + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", cardList=" + cardList +
                 '}';
     }
-
 
     public String userData() {
         return "User{" +

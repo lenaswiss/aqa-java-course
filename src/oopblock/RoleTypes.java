@@ -18,10 +18,6 @@ public enum RoleTypes {
         this.id = id;
     }
 
-   Role  createRole( RoleTypes type){
-        return new Role(type);
-   }
-
     public int getId(int p){
         return this.id;
     }

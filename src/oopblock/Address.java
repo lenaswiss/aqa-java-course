@@ -18,11 +18,12 @@ public class Address {
     private String room;
     private int zipCode;
 
-    public Address(String country, String city, String building, int zipCode) {
+    public Address(String country, String city, String street, String building, int zipCode) {
         this.id = numberOfInstance;
         numberOfInstance++;
         this.country = country;
         this.city = city;
+        this.street = street;
         this.building = building;
         this.zipCode = zipCode;
     }
