@@ -1,7 +1,9 @@
 package oopblock;
 
+import exeptions.PhoneNumberException;
 import exeptions.UserNotFoundException;
 import interfaces.Actions;
+import interfaces.PrintInfo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.Scanner;
  * toString(this method must be created for all classes);
  * printUserInfo(this method must print all user info except of id, cards and manager);
  */
-public class User implements Actions {
+public class User implements Actions, PrintInfo {
 
     public final static String USERS_FILE = "users.txt";
     private int id;
@@ -137,21 +139,35 @@ public class User implements Actions {
     }
 
     /**
-     * In process of setting phoneNumber value it must starts from + symbol,
-     * if not - print an error message.
-     *
-     * @param phoneNumber
+     * Java additional syntax
+     * Step 1. Exceptions:
+     *  throw your exception in your previous code.
      */
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) throws PhoneNumberException {
+        try {
         if (phoneNumber.startsWith("+")) {
             this.phoneNumber = phoneNumber;
-        } else {
-            System.out.println("Incorrect phone format, should starts from '+' symbol.");
+        }else {
+           throw new PhoneNumberException("Incorrect phone format, should starts from '+' symbol.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void setCardList(Card card) {
         this.cardList.add(card);
+    }
+
+    /**
+     *  For the Task 1 in chapter OOP paradigms, create new method
+     *  for User class,
+     *  that will print all Cards number(use method .forEach(), from ArrayList).
+     */
+    public void  printCardsNumber(ArrayList<Card> cardList){
+        for(Card card : cardList){
+            System.out.println(card.getNumber());
+        }
     }
 
     public void printUserInfo() {
@@ -265,5 +281,10 @@ public class User implements Actions {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void printInfo() {
+        System.out.println(userData());
     }
 }

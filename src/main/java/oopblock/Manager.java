@@ -1,5 +1,7 @@
 package oopblock;
 
+import interfaces.PrintInfo;
+
 import javax.swing.*;
 
 /**
@@ -11,7 +13,7 @@ import javax.swing.*;
  * Also, manager has the same method printUserInfo,
  * like a user, but this method additionally print all additional fields of manager.
  */
-public class Manager extends User {
+public class Manager extends User implements PrintInfo {
 
     private String position;
     private String responsibilityDistrict;
@@ -52,17 +54,17 @@ public class Manager extends User {
     }
 
     @Override
-    public void printUserInfo(){
-        super.printUserInfo();
-        System.out.println(toString());
-    }
-
-    @Override
     public String toString() {
         return "Manager{" +
                 "position='" + position + '\'' +
                 ", responsibilityDistrict='" + responsibilityDistrict + '\'' +
                 ", workPhoneNumber='" + workPhoneNumber + '\'' +
                 '}';
+    }
+
+    @Override
+    public void printInfo() {
+        super.printInfo();
+        System.out.println(toString());
     }
 }

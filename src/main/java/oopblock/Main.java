@@ -7,7 +7,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         User user = new User("Lena", "Test", "email@g.com", RoleTypes.MAIN_CUSTOMER);
         user.add();
-
+        user.setCardList(new Card("1234 5656 6723 2323", "11/23", 456, CardTypes.MASTER_CARDS));
+        user.setCardList(new Card("4953 5656 6723 2323", "109/25", 896, CardTypes.VISA));
+        user.printCardsNumber(user.getCardList());
+        user.setPhoneNumber("123 323 33 33");
+        System.out.println(user.getPhoneNumber());
+        user.setPhoneNumber("+123 323 33 33");
+        System.out.println(user.getPhoneNumber());
         String name;
         String email;
         String roleId;
@@ -25,7 +31,7 @@ public class Main {
                         System.out.println("enter email");
                         email = scanner.nextLine();
                         if (!email.contains("@")){
-                            System.out.println("Email format is invalid");//TODO add an error message
+                            System.out.println("Email format is invalid, should contain @ symbol.");//TODO add an error message
                         }
                     } while (!email.contains("@"));
 
