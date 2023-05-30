@@ -36,7 +36,7 @@ public class User implements Actions, PrintInfo {
     private String manager;
     private String phoneNumber;
     private ArrayList<Card> cardList = new ArrayList<>();
-    private static int numberOfInstance = 1;
+    private static int numberOfInstance;
 
     /**
      * A User object must be created with values of
@@ -46,8 +46,8 @@ public class User implements Actions, PrintInfo {
      * fullName value is a firstName and lastName combination separated with space.
      */
     public User(String fullName, String email, Role role) {
-        this.id = numberOfInstance;
         numberOfInstance++;
+        this.id = numberOfInstance;
         this.fullName = fullName;
         String[] listOfNames = fullName.split(" ");
         firstName = listOfNames[0];
@@ -63,8 +63,8 @@ public class User implements Actions, PrintInfo {
     }
 
     public User(String firstName, String lastName, String email, Role role) {
-        this.id = numberOfInstance;
         numberOfInstance++;
+        this.id = numberOfInstance;
         this.firstName = firstName;
         this.lastName = lastName;
         this.fullName = firstName + " " + lastName;
