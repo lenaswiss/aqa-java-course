@@ -28,6 +28,14 @@ public class Role {
 
     }
 
+    public static Role generateRole(RoleTypes roleType) {
+        return switch (roleType) {
+            case ADMIN -> new Role(true, true, true, true);
+            case VIEWER -> new Role(true, false, false, false);
+            case MAIN_CUSTOMER -> new Role(true, true, true, false);
+            case CUSTOMER -> new Role(true, false, true, false);
+        };
+    }
     public static Role generateRole(String roleType) {
         return switch (roleType.toLowerCase()) {
             case "admin" -> new Role(true, true, true, true);
@@ -38,15 +46,6 @@ public class Role {
         };
     }
 
-    public static Role generateRole(RoleTypes roleType) {
-        return switch (roleType) {
-            case ADMIN -> new Role(true, true, true, true);
-            case VIEWER -> new Role(true, false, false, false);
-            case MAIN_CUSTOMER -> new Role(true, true, true, false);
-            case CUSTOMER -> new Role(true, false, true, false);
-           // default -> null;
-        };
-    }
 
     @Override
     public String toString() {

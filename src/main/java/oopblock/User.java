@@ -1,7 +1,9 @@
 package oopblock;
 
+import exeptions.PhoneNumberException;
 import exeptions.UserNotFoundException;
 import interfaces.Actions;
+import interfaces.PrintInfo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.Scanner;
  * toString(this method must be created for all classes);
  * printUserInfo(this method must print all user info except of id, cards and manager);
  */
-public class User implements Actions {
+public class User implements Actions, PrintInfo {
 
     public final static String USERS_FILE = "users.txt";
     private int id;
@@ -34,7 +36,7 @@ public class User implements Actions {
     private String manager;
     private String phoneNumber;
     private ArrayList<Card> cardList = new ArrayList<>();
-    private static int numberOfInstance = 1;
+    private static int numberOfInstance;
 
     /**
      * A User object must be created with values of
@@ -44,8 +46,8 @@ public class User implements Actions {
      * fullName value is a firstName and lastName combination separated with space.
      */
     public User(String fullName, String email, Role role) {
-        this.id = numberOfInstance;
         numberOfInstance++;
+        this.id = numberOfInstance;
         this.fullName = fullName;
         String[] listOfNames = fullName.split(" ");
         firstName = listOfNames[0];
@@ -61,8 +63,8 @@ public class User implements Actions {
     }
 
     public User(String firstName, String lastName, String email, Role role) {
-        this.id = numberOfInstance;
         numberOfInstance++;
+        this.id = numberOfInstance;
         this.firstName = firstName;
         this.lastName = lastName;
         this.fullName = firstName + " " + lastName;
@@ -137,21 +139,35 @@ public class User implements Actions {
     }
 
     /**
-     * In process of setting phoneNumber value it must starts from + symbol,
-     * if not - print an error message.
-     *
-     * @param phoneNumber
+     * Java additional syntax
+     * Step 1. Exceptions:
+     *  throw your exception in your previous code.
      */
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) throws PhoneNumberException {
+        try {
         if (phoneNumber.startsWith("+")) {
             this.phoneNumber = phoneNumber;
-        } else {
-            System.out.println("Incorrect phone format, should starts from '+' symbol.");
+        }else {
+           throw new PhoneNumberException("Incorrect phone format, should starts from '+' symbol.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void setCardList(Card card) {
         this.cardList.add(card);
+    }
+
+    /**
+     *  For the Task 1 in chapter OOP paradigms, create new method
+     *  for User class,
+     *  that will print all Cards number(use method .forEach(), from ArrayList).
+     */
+    public void  printCardsNumber(ArrayList<Card> cardList){
+        for(Card card : cardList){
+            System.out.println(card.getNumber());
+        }
     }
 
     public void printUserInfo() {
@@ -265,5 +281,10 @@ public class User implements Actions {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void printInfo() {
+        System.out.println(userData());
     }
 }
